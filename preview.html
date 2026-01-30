@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>font preview</title>
+    <style>
+        @font-face {
+            font-family: 'MyFont';
+            src: url('build/Font.ttf') format('truetype');
+        }
+        body {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 8px;
+        }
+        #preview {
+            font-family: 'MyFont', monospace;
+            flex: 1;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <textarea id="preview">ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz</textarea>
+</body>
+</html>
