@@ -1,46 +1,37 @@
-A recipe to create [colored fonts](https://fonts.google.com/knowledge/introducing_type/introducing_color_fonts) from an existing font
+Scripts to play with fonts
 
 ## Requirements
 
-- [fontTools](https://github.com/fonttools/fonttools) v4.61.1
+- [fontTools](https://github.com/fonttools/fonttools), tested in v4.61.1
 
-## Usage
+## tint.py - Create Colored Fonts
 
-First, prepare a two-column tsv with characters and corresponding colors. The first column may contain multiple characters.
+usage:
+
+```bash
+python3 tint.py <input.ttf> <output.ttf> --palette-map <color_map.tsv>
+# e.g.
+python3 tint.py /path/to/SourceFont.ttf build/Font.ttf --palette-map rainbow.map
+```
+
+The color map should be a arbitrary-column tsv file, with first column being hex color codes, and the rest columns being characters to be colored with the corresponding color.
 
 e.g. `rainbow.map`:
 
 ```
-Aa	#F8766D
-Bb	#EE8043
-Cc	#E18A00
-Dd	#D19300
+#F8766D	A	a
+#EE8043	B	b
+#E18A00	C	c
+#D19300	D	d
 ...
 ```
 
-then run
+Multiple characters in one column will be combined into ligatures.
+
+### useful fontTools commands
+
+To subset glyphs from a font:
 
 ```
-./tint.py source_font.ttf out_font.ttf --palette-map rainbow.map
-```
-
-<hr>
-
-Or, using the provided `Makefile`:
-
-```
-make PALETTE_MAP=rainbow.map TEMPLATE_FONT=your_font.ttf
-```
-
-output will be created at `build/Font.ttf`. You can preview it in `preview.html` with a supporting browser (e.g. Chrome).
-
-#### `make` options
-
-```
-PALETTE_MAP    color mapping file
-TEMPLATE_FONT  source font file
-# metadata
-FONT_NAME      family name of the font [ optional ]
-# output
-BUILD_DIR      working directory [ default: build/ ]
+pyftsubset SourceFont.ttf --unicodes="U+0000-007F" --output-file=build/SubsetASCII.ttf
 ```
