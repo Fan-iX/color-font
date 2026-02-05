@@ -28,6 +28,20 @@ e.g. `rainbow.map`:
 
 Multiple characters in one column will be combined into ligatures.
 
+## scriptify.py - Add simple TeX style super/subscript
+
+usage:
+
+```bash
+python3 scriptify.py <input.ttf> <output.ttf> --unicodes="U+xxxx-xxxx"
+# e.g.
+python3 scriptify.py /path/to/SourceFont.ttf build/Font.ttf --unicodes="U+0020-007E" # build super/subscript for ASCII chars
+```
+
+To use the super/subscript glyphs, type `_{char}` for subscript, and `^{char}` for superscript.
+
+e.g. `H_2SO_4^{2+}` will render as H₂SO₄²⁺
+
 ### useful fontTools commands
 
 To subset glyphs from a font:
