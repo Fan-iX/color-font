@@ -42,10 +42,16 @@ To use the super/subscript glyphs, type `_{char}` for subscript, and `^{char}` f
 
 e.g. `H_2SO_4^{2+}` will render as H₂SO₄²⁺
 
-### useful fontTools commands
+### utils
 
-To subset glyphs from a font:
+To subset glyphs from a font: (requires `fonttools`)
 
 ```
 pyftsubset SourceFont.ttf --unicodes="U+0000-007F" --output-file=build/SubsetASCII.ttf
+```
+
+To adjust luminance of a palette: (requires `colorspacious`)
+
+```
+python3 remap-palette.py light-theme.map --l-from 0 0.7 --l-to 0.3 1 > dark-theme.map
 ```
